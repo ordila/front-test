@@ -4,14 +4,66 @@
 
 @import "../assets/fonts/fonts.css";
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.smooth-scale {
+  @apply transform transition duration-300 ease-in-out;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+/* SWIPER STYLES */
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  content: none;
+  font-size: 16px !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.swiper-pagination {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.swiper:hover .swiper-button-next,
+.swiper:hover .swiper-button-prev,
+.swiper:hover .swiper-pagination {
+  opacity: 1;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  background-color: black !important;
+  color: white !important;
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.swiper:hover .swiper-button-next,
+.swiper:hover .swiper-button-prev {
+  opacity: 1;
+}
+/* Пагінація-буллети */
+.swiper-pagination-bullet {
+  width: 60px !important;
+  height: 6px !important;
+  background-color: #d3d3d3 !important;
+  transition: background-color 0.3s ease !important;
+  border-radius: 0 !important;
+}
+
+/* Активний буллет */
+.swiper-pagination-bullet-active {
+  background-color: black !important;
+}
+
+/* Приховуємо пагінацію на малих екранах */
+@media (max-width: 768px) {
+  .swiper-pagination {
+    display: none !important;
   }
 }
+
+/* END OF THE SWIPER STYLES */
