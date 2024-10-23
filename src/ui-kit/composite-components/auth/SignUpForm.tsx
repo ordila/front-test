@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 
 import { Checkbox } from "@mui/material";
 
@@ -8,7 +8,11 @@ import {
   PasswordInput,
 } from "@/ui-kit/base-components";
 
-export const SignUpForm = () => {
+export interface SignUpFormProps {
+  onClose: () => void;
+}
+
+export const SignUpForm: FC<SignUpFormProps> = ({ onClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");

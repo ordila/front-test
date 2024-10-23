@@ -39,7 +39,11 @@ export const AuthModal: FC<AuthModalProps> = ({ isOpen, onClose }) => {
               {isSignIn ? "Welcome back!" : "Create an account"}
             </h4>
 
-            {isSignIn ? <SignInForm /> : <SignUpForm />}
+            {isSignIn ? (
+              <SignInForm onClose={onClose} />
+            ) : (
+              <SignUpForm onClose={onClose} />
+            )}
           </div>
         </div>
 

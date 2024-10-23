@@ -13,6 +13,7 @@ import Languages from "@/assets/icons/languages.svg";
 import Unauthorized from "@/assets/icons/unauthorized.svg";
 
 import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
 
 //temporary const
 const languages = ["ENG", "UA", "AR"];
@@ -25,7 +26,8 @@ interface BurgerMenuProps {
 const BurgerMenu: FC<BurgerMenuProps> = ({ isMenuOpen, toggleMenu }) => {
   //temporary consts
   const [selectedLang, setSelectedLang] = useState("ENG");
-  const isLoggedIn = false;
+
+  const isLoggedIn = useQuery({ queryKey: ["authStatus"] });
 
   const handleLanguageChange = (lang: string) => {
     setSelectedLang(lang);

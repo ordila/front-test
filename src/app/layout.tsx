@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-import { Aside, AuthModal, Header } from "@/ui-kit/composite-components";
+import { Aside, Header } from "@/ui-kit/composite-components";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -12,8 +12,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   const [queryClient] = useState(() => new QueryClient());
 
   return (
@@ -31,20 +29,7 @@ export default function RootLayout({
             </div>
 
             {/* Основний контент */}
-            <div className="flex-grow w-full px-[42px]">
-              <button
-                onClick={() => setIsModalOpen(true)}
-                className="bg-black text-white px-4 py-2"
-              >
-                Open Auth Modal
-              </button>
-              <AuthModal
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-              />
-
-              {children}
-            </div>
+            <div className="flex-grow w-full px-[42px]">{children}</div>
           </main>
         </QueryClientProvider>
       </body>
