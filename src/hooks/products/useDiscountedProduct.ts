@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { Product } from "@/types/product/product";
 
 import { ProductService } from "@/services";
+import { ProductDto } from "@/dto/product.dto";
 
 export const useDiscountedProducts = () => {
-  const { data, isLoading, error } = useQuery<Product[], Error>({
+  const { data, isLoading, error } = useQuery<ProductDto[], Error>({
     queryKey: ["discountedProducts"],
     queryFn: ProductService.getDiscountedProducts,
   });

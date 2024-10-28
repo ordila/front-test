@@ -2,17 +2,18 @@ import { FC } from "react";
 
 import Image from "next/image";
 
-import { Product } from "@/types/product/product";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 
 import "swiper/swiper-bundle.css";
+
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
+import { ProductDto } from "@/dto/product.dto";
+
 interface ProductSliderProps {
-  products: Product[];
+  products: ProductDto[];
 }
 
 export const ProductSlider: FC<ProductSliderProps> = ({ products }) => {
@@ -60,7 +61,9 @@ export const ProductSlider: FC<ProductSliderProps> = ({ products }) => {
                 ${product.price}
               </div>
               <div className="text-[20px] font-bold text-black mb-2 absolute bottom-[24px] left-[30px]">
-                ${product.price - (product.price * product.discount) / 100}
+                $
+                {product.price -
+                  (product.price * (product.discount ?? 0)) / 100}
               </div>
               <div className="text-[16px] uppercase text-right">
                 {product.name}

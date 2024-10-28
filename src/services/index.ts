@@ -1,2 +1,2 @@
-export * from "./categories/getCategories";
+export * from "./categories/categories.service";
 export * from "./products/products.service";
