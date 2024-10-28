@@ -29,7 +29,9 @@ export default function RootLayout({
             </div>
 
             {/* Основний контент */}
-            <div className="flex-grow w-full px-[42px]">{children}</div>
+            <div className="flex-grow w-full px-[42px] pt-[42px]">
+              {children}
+            </div>
           </main>
         </QueryClientProvider>
       </body>

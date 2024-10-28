@@ -1,5 +1,4 @@
-import { FC, useState } from "react";
-
+import { useState } from "react";
 import { Checkbox } from "@mui/material";
 
 import {
@@ -8,15 +7,17 @@ import {
   PasswordInput,
 } from "@/ui-kit/base-components";
 
-export interface SignUpFormProps {
-  onClose: () => void;
-}
+import { useAuthModal, useRegister } from "@/hooks/auth";
 
-export const SignUpForm: FC<SignUpFormProps> = ({ onClose }) => {
+export const SignUpForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const { closeModal } = useAuthModal();
+  const { mutate: register, isPending } = useRegister();
 
   const isFormValid =
     email.trim() !== "" &&
@@ -28,7 +29,23 @@ export const SignUpForm: FC<SignUpFormProps> = ({ onClose }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!isFormValid) return;
-    console.log("Реєстрація виконана!");
+
+    setErrorMessage(null);
+
+    register(
+      { email, password },
+      {
+        onSuccess: () => {
+          closeModal();
+        },
+        onError: (error: any) => {
+          setErrorMessage(
+            error?.response?.data?.message ||
+              "Registration failed. Please try again."
+          );
+        },
+      }
+    );
   };
 
   return (
@@ -69,11 +86,10 @@ export const SignUpForm: FC<SignUpFormProps> = ({ onClose }) => {
         </label>
       </div>
 
-      <ButtonPrimary
-        onClick={() => console.log("Button clicked!")}
-        isDisabled={!isFormValid}
-      >
-        Sign up
+      {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
+
+      <ButtonPrimary type="submit" isDisabled={!isFormValid || isPending}>
+        {isPending ? "Signing up..." : "Sign up"}
       </ButtonPrimary>
     </form>
   );

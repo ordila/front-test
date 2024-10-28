@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Info from "@/assets/icons/info.svg";
@@ -7,15 +7,13 @@ import {
   FormInput,
   PasswordInput,
 } from "@/ui-kit/base-components";
-import { useLogin } from "@/hooks/auth/useLogin";
+import { useAuthModal, useLogin } from "@/hooks/auth";
 
-export interface SignInFormProps {
-  onClose: () => void;
-}
-
-export const SignInForm: FC<SignInFormProps> = ({ onClose }) => {
+export const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const { closeModal } = useAuthModal();
 
   const { mutate: login, isError, isPending, isSuccess, error } = useLogin();
 
@@ -30,9 +28,9 @@ export const SignInForm: FC<SignInFormProps> = ({ onClose }) => {
 
   useEffect(() => {
     if (isSuccess) {
-      onClose();
+      closeModal();
     }
-  }, [isSuccess, onClose]);
+  }, [isSuccess, closeModal]);
 
   return (
     <form className="space-y-4" onSubmit={handleSubmit}>
@@ -52,7 +50,7 @@ export const SignInForm: FC<SignInFormProps> = ({ onClose }) => {
 
       {/* Кнопка логіну */}
       <ButtonPrimary
-        onClick={() => console.log("Button clicked!")}
+        type="submit"
         isDisabled={!isFormValid || isPending} // Дизейблимо кнопку, якщо форма не валідна або йде логін
       >
         {isPending ? "Logging in..." : "Sign in"}

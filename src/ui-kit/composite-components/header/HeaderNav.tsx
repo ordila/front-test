@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -10,20 +10,16 @@ import ProfileIcon from "@/assets/icons/authorized.svg";
 
 import ProfilePopUp from "./ProfilePopUp";
 
-import { useAuthStatus } from "@/hooks/auth/useLogin";
+import { useAuthStatus } from "@/hooks/auth";
 
 export default function HeaderIcons() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  const { data: isLoggedIn } = useAuthStatus();
+  const { isLoggedIn } = useAuthStatus();
 
   const togglePopup = () => {
     setIsPopupOpen(!isPopupOpen);
   };
-
-  useEffect(() => {
-    console.log("isLoggedIn state updated:", isLoggedIn);
-  }, [isLoggedIn]);
 
   return (
     <div className="flex items-center gap-[40px]">
@@ -56,7 +52,6 @@ export default function HeaderIcons() {
             <Image src={UserIcon} alt="Login" />
           )}
         </button>
-        {isLoggedIn && <div>Hola</div>}
 
         {/* Popup при кліку на профіль */}
         {isPopupOpen && isLoggedIn && (
