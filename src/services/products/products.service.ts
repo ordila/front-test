@@ -1,20 +1,25 @@
-import { Product } from "@/types/product/product";
+import { ProductDto, ProductSchema } from "@/dto/product.dto";
+
 import { axiosInstance } from "@/utils";
 
 export class ProductService {
-  static async getDiscountedProducts(): Promise<Product[]> {
-    const response = await axiosInstance.get<Product[]>(
+  static async getDiscountedProducts(): Promise<ProductDto[]> {
+    const response = await axiosInstance.get<ProductDto[]>(
       "/products/discounted-products"
     );
-    return response.data;
+    const products = ProductSchema.array().parse(response.data);
+
+    return products;
   }
 
   static async getDiscountedProductsByCategory(
     categoryId: number
-  ): Promise<Product[]> {
-    const response = await axiosInstance.get<Product[]>(
+  ): Promise<ProductDto[]> {
+    const response = await axiosInstance.get<ProductDto[]>(
       `/products/category/${categoryId}/discounted`
     );
-    return response.data;
+    const products = ProductSchema.array().parse(response.data);
+
+    return products;
   }
 }

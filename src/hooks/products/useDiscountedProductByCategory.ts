@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { ProductService } from "@/services";
+import { ProductDto } from "@/dto/product.dto";
 
 export const useProductsByCategory = (categoryId: number) => {
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, error } = useQuery<ProductDto[], Error>({
     queryKey: ["discountedProductsByCategory"],
     queryFn: () => ProductService.getDiscountedProductsByCategory(categoryId),
     enabled: !!categoryId,

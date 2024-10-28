@@ -1,19 +1,19 @@
 import { FC } from "react";
 import Image from "next/image";
 
-import { Product } from "@/types/product/product";
-
 import ArrowLg from "@/assets/icons/Arrow-lg.svg";
 import ArrowMd from "@/assets/icons/arrow-md.svg";
 import ArrowSm from "@/assets/icons/arrow-sm.svg";
 
+import { ProductDto } from "@/dto/product.dto";
+
 export interface BannerProps {
-  product: Product;
+  product: ProductDto;
 }
 
 const Banner: FC<BannerProps> = ({ product }) => {
   const discountedPrice = Math.floor(
-    product.price - (product.price * product.discount) / 100
+    product.price - (product.price * (product.discount ?? 0)) / 100
   );
 
   return (
