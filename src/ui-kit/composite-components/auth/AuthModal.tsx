@@ -1,5 +1,5 @@
 "use client";
-import { FC, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 
 import SignIn from "@/assets/images/sign_in.png";
@@ -10,22 +10,21 @@ import { FormHeader } from "./FormHeader";
 import { SignInForm } from "./SignInForm";
 import { SignUpForm } from "./SignUpForm";
 
-type AuthModalProps = {
-  isOpen: boolean;
-  onClose: () => void;
-};
+import { useAuthModal } from "@/hooks/auth";
 
-export const AuthModal: FC<AuthModalProps> = ({ isOpen, onClose }) => {
+export const AuthModal = () => {
   const [isSignIn, setIsSignIn] = useState(true);
 
-  if (!isOpen) return null;
+  const { isModalOpen, closeModal } = useAuthModal();
+
+  if (!isModalOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 px-[25px] py-[60px]">
       <div className="bg-white w-full max-w-[1024px]  rounded-lg flex flex-col md:flex-row relative">
         {/* Close Button */}
         <button
-          onClick={onClose}
+          onClick={closeModal}
           className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 hover:scale-125 smooth-scale"
         >
           <Image src={Close} alt="Close icon" />

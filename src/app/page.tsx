@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  AuthModal,
   CategoriesSlider,
   LargeSlider,
   ProductSlider,
@@ -12,14 +13,14 @@ export default function Home() {
   const { smallSliderProducts, largeSliderProducts, isLoading, error } =
     useDiscountedProducts();
 
-  console.log("largeSliderProducts", smallSliderProducts);
-
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading products</div>;
 
   return (
     <div>
       <CategoriesSlider />
+
+      <AuthModal />
 
       {largeSliderProducts && <LargeSlider products={largeSliderProducts} />}
       {smallSliderProducts && <ProductSlider products={smallSliderProducts} />}

@@ -10,11 +10,12 @@ import ProfileIcon from "@/assets/icons/authorized.svg";
 
 import ProfilePopUp from "./ProfilePopUp";
 
-export default function HeaderIcons() {
-  //temporary const
-  const isLoggedIn = true;
+import { useAuthStatus } from "@/hooks/auth";
 
+export default function HeaderIcons() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const { isLoggedIn } = useAuthStatus();
 
   const togglePopup = () => {
     setIsPopupOpen(!isPopupOpen);

@@ -10,11 +10,15 @@ import Contact from "@/assets/icons/support.svg";
 import SignOut from "@/assets/icons/sign-out.svg";
 import Close from "@/assets/icons/close.svg";
 
+import { useLogout } from "@/hooks/auth";
+
 type ProfilePopUpProps = {
   togglePopup: () => void;
 };
 
 const ProfilePopUp: FC<ProfilePopUpProps> = ({ togglePopup }) => {
+  const logout = useLogout();
+
   return (
     <div className="absolute z-[1000] right-[-20px] mt-6 p-[50px]  bg-white rounded-lg shadow-lg  ">
       <div>
@@ -56,7 +60,13 @@ const ProfilePopUp: FC<ProfilePopUpProps> = ({ togglePopup }) => {
       </div>
 
       <div>
-        <button className="uppercase flex gap-3 items-center h-[60px]  mt-5">
+        <button
+          className="uppercase flex gap-3 items-center h-[60px]  mt-5"
+          onClick={() => {
+            logout();
+            togglePopup();
+          }}
+        >
           <Image src={SignOut} alt="Sign out icon" />
           Sign Out
         </button>

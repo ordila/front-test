@@ -14,6 +14,8 @@ import Unauthorized from "@/assets/icons/unauthorized.svg";
 
 import Link from "next/link";
 
+import { useAuthModal, useAuthStatus, useLogout } from "@/hooks/auth";
+
 //temporary const
 const languages = ["ENG", "UA", "AR"];
 
@@ -25,10 +27,25 @@ interface BurgerMenuProps {
 const BurgerMenu: FC<BurgerMenuProps> = ({ isMenuOpen, toggleMenu }) => {
   //temporary consts
   const [selectedLang, setSelectedLang] = useState("ENG");
-  const isLoggedIn = false;
+
+  const { isLoggedIn } = useAuthStatus();
+
+  const logout = useLogout();
+
+  const { openModal, isModalOpen } = useAuthModal();
 
   const handleLanguageChange = (lang: string) => {
     setSelectedLang(lang);
+  };
+
+  const handleSignOut = () => {
+    logout();
+    toggleMenu();
+  };
+
+  const handleSignIn = () => {
+    toggleMenu();
+    openModal();
   };
 
   return (
@@ -152,23 +169,27 @@ const BurgerMenu: FC<BurgerMenuProps> = ({ isMenuOpen, toggleMenu }) => {
 
       {/* Sign Out Section */}
       <div className="h-[60px] mt-5">
-        <button className="flex items-center hover:text-gray-400 h-[60px] uppercase">
-          {isLoggedIn ? (
-            <>
-              <Image src={SignOutIcon} alt="Sign Out" className="mr-3" />
-              Sign Out
-            </>
-          ) : (
-            <span className="flex items-center">
-              <Image
-                src={Unauthorized}
-                alt="Sign In and Sign Up"
-                className="mr-3"
-              />
-              <span className="text-[#DC4E4E]">Sign In & Sign Up </span>
-            </span>
-          )}
-        </button>
+        {isLoggedIn ? (
+          <button
+            onClick={handleSignOut}
+            className="flex items-center hover:text-gray-400 h-[60px] uppercase"
+          >
+            <Image src={SignOutIcon} alt="Sign Out" className="mr-3" />
+            Sign Out
+          </button>
+        ) : (
+          <button
+            onClick={handleSignIn}
+            className="flex items-center hover:text-gray-400 h-[60px] uppercase"
+          >
+            <Image
+              src={Unauthorized}
+              alt="Sign In and Sign Up"
+              className="mr-3"
+            />
+            <span className="text-[#DC4E4E]">Sign In & Sign Up</span>
+          </button>
+        )}
       </div>
     </div>
   );
