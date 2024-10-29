@@ -7,6 +7,10 @@ export class AuthService {
       password,
     });
 
+    if (response.data) {
+      document.cookie = "isLoggedIn=true; path=/; secure; samesite=strict";
+    }
+
     return response.data;
   }
 
@@ -30,7 +34,12 @@ export class AuthService {
 
   static async logout() {
     await axiosInstance.post("auth/logout");
+  }
 
-    localStorage.removeItem("authToken");
+  static async checkAuthStatus(): Promise<boolean> {
+    const response = await axiosInstance.get<{ isLoggedIn: boolean }>(
+      "/auth/status"
+    );
+    return response.data.isLoggedIn;
   }
 }

@@ -12,9 +12,7 @@ export const useRegister = () => {
       email: string;
       password: string;
     }) => {
-      const { accessToken } = await AuthService.register(email, password);
-      localStorage.setItem("token", accessToken);
-      return accessToken;
+      await AuthService.register(email, password);
     },
     onSuccess: () => {
       queryClient.setQueryData(["authStatus"], true);

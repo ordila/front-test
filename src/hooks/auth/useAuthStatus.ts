@@ -1,20 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
+import { AuthService } from "@/services/auth/auth.service";
 
 export const useAuthStatus = () => {
-  const isClient = typeof window !== "undefined";
-
-  const { data: isLoggedIn = false } = useQuery({
+  const { data: isLoggedIn, isLoading } = useQuery({
     queryKey: ["authStatus"],
-    queryFn: () => {
-      if (isClient) {
-        const token = localStorage.getItem("token");
-        return !!token;
-      }
-      return false;
-    },
-    initialData: isClient ? !!localStorage.getItem("token") : false,
+    queryFn: AuthService.checkAuthStatus,
     staleTime: Infinity,
   });
 
-  return { isLoggedIn };
+  return { isLoggedIn, isLoading };
 };

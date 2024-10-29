@@ -12,12 +12,11 @@ export const useLogin = () => {
       email: string;
       password: string;
     }) => {
-      const { accessToken } = await AuthService.login(email, password);
-      localStorage.setItem("token", accessToken);
-      return accessToken;
+      await AuthService.login(email, password);
     },
     onSuccess: () => {
       queryClient.setQueryData(["authStatus"], true);
+      document.cookie = "isLoggedIn=true; path=/; secure; samesite=strict";
     },
     onError: () => {
       queryClient.setQueryData(["authStatus"], false);

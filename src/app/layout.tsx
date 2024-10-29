@@ -1,39 +1,16 @@
-"use client";
-import { useState } from "react";
-
-import { Aside, Header } from "@/ui-kit/composite-components";
-
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
+import ServerAuthStatus from "@/ui-kit/composite-components/layout/ServerAuthStatus";
 import "./globals.css";
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const [queryClient] = useState(() => new QueryClient());
+import { ReactNode } from "react";
+import ClientLayout from "@/ui-kit/composite-components/layout/ClientLayout";
 
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col">
-        <QueryClientProvider client={queryClient}>
-          {/* Хедер */}
-          <Header />
-
-          {/* Головна секція, що включає Aside і контент */}
-          <main className="flex flex-grow md:px-[87px] pl-[24px]">
-            {/* Aside на мобільних */}
-            <div className="hidden md:block">
-              <Aside />
-            </div>
-
-            {/* Основний контент */}
-            <div className="flex-grow w-full px-[42px] pt-[42px]">
-              {children}
-            </div>
-          </main>
-        </QueryClientProvider>
+        <ServerAuthStatus>
+          <ClientLayout>{children}</ClientLayout>
+        </ServerAuthStatus>
       </body>
     </html>
   );
