@@ -1,15 +1,22 @@
 import React from "react";
-import Image from "next/image";
 
-import Arrow from "@/assets/icons/arrow.svg";
+import ArrowIcon from "@/assets/icons/ArrowIcon";
 
-export const ButtonIcon = ({ title }: { title: string }) => {
+export const ButtonIcon = ({
+  title,
+  className,
+}: {
+  title: string;
+  className?: string;
+}) => {
   return (
     <button
       className={`h-full w-full font-semibold  uppercase bg-flash-green  flex justify-center items-center gap-2`}
     >
       {title}
-      <Image src={Arrow} alt="arrow" />
+      <div className={className}>
+        <ArrowIcon />
+      </div>
     </button>
   );
 };

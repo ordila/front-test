@@ -1,3 +1,4 @@
+"use client";
 import { FC } from "react";
 
 import Image from "next/image";
@@ -10,7 +11,7 @@ import "swiper/swiper-bundle.css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import { ProductDto } from "@/dto/product.dto";
+import { ProductDto } from "@/dto";
 
 interface ProductSliderProps {
   products: ProductDto[];

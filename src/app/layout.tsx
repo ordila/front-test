@@ -1,8 +1,9 @@
-import ServerAuthStatus from "@/ui-kit/composite-components/layout/ServerAuthStatus";
+import { ReactNode } from "react";
+
 import "./globals.css";
 
-import { ReactNode } from "react";
-import ClientLayout from "@/ui-kit/composite-components/layout/ClientLayout";
+import { ClientLayout } from "@/ui-kit/composite-components";
+import ServerAuthStatus from "@/ui-kit/composite-components/layout/ServerAuthStatus";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (

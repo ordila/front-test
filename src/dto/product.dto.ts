@@ -1,13 +1,15 @@
 import { z } from "zod";
 
+// Схема для зображень продукту
 const ProductImageSchema = z.object({
-  id: z.number(),
-  productId: z.number(),
+  id: z.number().optional(),
+  productId: z.number().optional(),
   imageUrl: z.string().url(),
-  isDefault: z.boolean(),
-  createdAt: z.string().datetime(),
+  isDefault: z.boolean().optional(),
+  createdAt: z.string().datetime().optional(),
 });
 
+// Схема для основної інформації про продукт
 export const ProductSchema = z.object({
   id: z.number(),
   categoryId: z.number(),
@@ -20,7 +22,4 @@ export const ProductSchema = z.object({
   images: z.array(ProductImageSchema),
 });
 
-export type ProductDto = Omit<
-  z.infer<typeof ProductSchema>,
-  "createdAt" | "updatedAt"
->;
+export type ProductDto = z.infer<typeof ProductSchema>;

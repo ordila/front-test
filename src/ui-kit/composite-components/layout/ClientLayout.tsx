@@ -7,15 +7,17 @@ interface ClientLayoutProps {
   children: ReactNode;
 }
 
-export default function ClientLayout({ children }: ClientLayoutProps) {
+export function ClientLayout({ children }: ClientLayoutProps) {
   return (
     <>
       <Header />
-      <main className="flex flex-grow md:px-[87px] pl-[24px]">
+      <main className="flex flex-grow md:px-[87px] px-[24px] ">
         <div className="hidden md:block">
           <Aside />
         </div>
-        <div className="flex-grow w-full px-[42px] pt-[42px]">{children}</div>
+        <div className="flex-grow w-full md:px-[42px] md:pt-[42px] max-w-[1390px]">
+          {children}
+        </div>
       </main>
     </>
   );

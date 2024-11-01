@@ -1,14 +1,16 @@
+"use client";
 import React, { FC } from "react";
-
-import DiscountedBanner from "@/ui-kit/composite-components/home/DiscountedBanner";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
 
 import "swiper/swiper-bundle.css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { ProductDto } from "@/dto/product.dto";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+
+import { Banner } from "@/ui-kit/composite-components";
+
+import { ProductDto } from "@/dto";
 
 export interface LargeSliderProps {
   products: ProductDto[];
@@ -32,7 +34,7 @@ export const LargeSlider: FC<LargeSliderProps> = ({ products }) => {
     >
       {products.map((product: ProductDto) => (
         <SwiperSlide key={product.id}>
-          <DiscountedBanner product={product} />
+          <Banner product={product} />
         </SwiperSlide>
       ))}
     </Swiper>

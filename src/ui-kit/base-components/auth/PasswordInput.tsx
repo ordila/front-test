@@ -1,3 +1,4 @@
+"use client";
 import { FC, useState } from "react";
 
 import { TextField, InputAdornment, IconButton } from "@mui/material";

@@ -1,4 +1,4 @@
-import { CategoryDto, CategorySchema } from "@/dto/category.dto";
+import { CategoryDto, CategorySchema } from "@/dto";
 import { axiosInstance } from "@/utils";
 
 export class CategoryService {

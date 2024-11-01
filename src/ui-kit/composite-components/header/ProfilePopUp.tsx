@@ -10,7 +10,7 @@ import Contact from "@/assets/icons/support.svg";
 import SignOut from "@/assets/icons/sign-out.svg";
 import Close from "@/assets/icons/close.svg";
 
-import { useLogout } from "@/hooks/auth";
+import { useLogout } from "@/hooks";
 
 type ProfilePopUpProps = {
   togglePopup: () => void;

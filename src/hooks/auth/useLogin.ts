@@ -1,4 +1,5 @@
-import { AuthService } from "@/services/auth/auth.service";
+import { AuthService } from "@/services";
+
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useLogin = () => {
@@ -16,6 +17,7 @@ export const useLogin = () => {
     },
     onSuccess: () => {
       queryClient.setQueryData(["authStatus"], true);
+
       document.cookie = "isLoggedIn=true; path=/; secure; samesite=strict";
     },
     onError: () => {

@@ -1,5 +1,5 @@
 import { useQueryClient } from "@tanstack/react-query";
-import { AuthService } from "@/services/auth/auth.service";
+import { AuthService } from "@/services";
 
 export const useLogout = () => {
   const queryClient = useQueryClient();

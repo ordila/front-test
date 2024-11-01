@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,7 +8,7 @@ import {
   FormInput,
   PasswordInput,
 } from "@/ui-kit/base-components";
-import { useAuthModal, useLogin } from "@/hooks/auth";
+import { useAuthModal, useLogin } from "@/hooks";
 
 export const SignInForm = () => {
   const [email, setEmail] = useState("");

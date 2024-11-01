@@ -1,5 +1,7 @@
+"use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import LogoPhone from "@/assets/images/logo_background_header_phone.png";
 import LogoDesktop from "@/assets/images/logo_header_desk.png";
@@ -20,24 +22,26 @@ export const Header = () => {
   return (
     <header className="flex justify-between items-center bg-light-grey pr-5 md:h-[86px] md:pr-[87px]">
       {/* Логотип */}
-      <div className="h-full md:min-w-[344px]">
-        <Image
-          src={LogoPhone}
-          alt="Logo"
-          width={60}
-          height={60}
-          className="md:hidden"
-        />
+      <Link href={"/"}>
+        <div className="h-full md:min-w-[344px]">
+          <Image
+            src={LogoPhone}
+            alt="Logo"
+            width={60}
+            height={60}
+            className="md:hidden"
+          />
 
-        {/* Логотип для десктопної версії */}
-        <Image
-          src={LogoDesktop}
-          alt="Logo"
-          width={344}
-          height={86}
-          className="hidden md:block"
-        />
-      </div>
+          {/* Логотип для десктопної версії */}
+          <Image
+            src={LogoDesktop}
+            alt="Logo"
+            width={344}
+            height={86}
+            className="hidden md:block"
+          />
+        </div>
+      </Link>
 
       {/* Пошук для десктопу */}
       <div className="hidden md:flex flex-grow justify-center w-full">
