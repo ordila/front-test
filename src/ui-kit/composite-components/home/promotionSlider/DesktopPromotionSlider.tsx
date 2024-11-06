@@ -56,7 +56,7 @@ const DesktopPromotionalSlider = ({
                 }}
               >
                 <div
-                  className="hidden md:flex  col-span-2 row-span-3 px-[75px] py-[70px]  bg-super-light-grey relative  flex-col items-start justify-center"
+                  className="group hidden md:flex  col-span-2 row-span-3 px-[75px] py-[70px]  bg-super-light-grey relative  flex-col items-start justify-center"
                   style={{ gridArea: "main" }}
                 >
                   {product.isBestSeller && (
