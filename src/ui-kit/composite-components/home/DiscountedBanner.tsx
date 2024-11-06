@@ -5,13 +5,13 @@ import ArrowLg from "@/assets/icons/Arrow-lg.svg";
 import ArrowMd from "@/assets/icons/arrow-md.svg";
 import ArrowSm from "@/assets/icons/arrow-sm.svg";
 
-import { ProductDto } from "@/dto/product.dto";
+import { ProductDto } from "@/dto";
 
 export interface BannerProps {
   product: ProductDto;
 }
 
-const Banner: FC<BannerProps> = ({ product }) => {
+export const Banner: FC<BannerProps> = ({ product }) => {
   const discountedPrice = Math.floor(
     product.price - (product.price * (product.discount ?? 0)) / 100
   );
@@ -86,5 +86,3 @@ const Banner: FC<BannerProps> = ({ product }) => {
     </div>
   );
 };
-
-export default Banner;

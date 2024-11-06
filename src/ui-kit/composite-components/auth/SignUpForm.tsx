@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import { Checkbox } from "@mui/material";
 
@@ -7,7 +8,7 @@ import {
   PasswordInput,
 } from "@/ui-kit/base-components";
 
-import { useAuthModal, useRegister } from "@/hooks/auth";
+import { useAuthModal, useRegister } from "@/hooks";
 
 export const SignUpForm = () => {
   const [email, setEmail] = useState("");

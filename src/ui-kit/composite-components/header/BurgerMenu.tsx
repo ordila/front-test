@@ -1,3 +1,5 @@
+"use client";
+
 import React, { FC, useState } from "react";
 import Image from "next/image";
 
@@ -14,7 +16,7 @@ import Unauthorized from "@/assets/icons/unauthorized.svg";
 
 import Link from "next/link";
 
-import { useAuthModal, useAuthStatus, useLogout } from "@/hooks/auth";
+import { useAuthModal, useAuthStatus, useLogout, useFavorites } from "@/hooks";
 
 //temporary const
 const languages = ["ENG", "UA", "AR"];
@@ -32,7 +34,9 @@ const BurgerMenu: FC<BurgerMenuProps> = ({ isMenuOpen, toggleMenu }) => {
 
   const logout = useLogout();
 
-  const { openModal, isModalOpen } = useAuthModal();
+  const { openModal } = useAuthModal();
+
+  const { count: initialCount } = useFavorites();
 
   const handleLanguageChange = (lang: string) => {
     setSelectedLang(lang);
@@ -108,7 +112,7 @@ const BurgerMenu: FC<BurgerMenuProps> = ({ isMenuOpen, toggleMenu }) => {
           <Image src={FavoritesIcon} alt="Favorites" className="mr-3" />
           Favorites
           <span className="ml-auto bg-[#2F2F2F] rounded-full min-w-[24px] h-[24px] flex justify-center items-center px-2 py-1 text-xs">
-            {0}
+            {initialCount}
           </span>
         </Link>
 

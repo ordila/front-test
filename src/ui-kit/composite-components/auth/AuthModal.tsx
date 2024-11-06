@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import Image from "next/image";
 
@@ -10,7 +11,7 @@ import { FormHeader } from "./FormHeader";
 import { SignInForm } from "./SignInForm";
 import { SignUpForm } from "./SignUpForm";
 
-import { useAuthModal } from "@/hooks/auth";
+import { useAuthModal } from "@/hooks";
 
 export const AuthModal = () => {
   const [isSignIn, setIsSignIn] = useState(true);

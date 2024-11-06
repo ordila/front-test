@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { AuthService } from "@/services/auth/auth.service";
+import { AuthService } from "@/services";
 
 export const useAuthStatus = () => {
   const { data: isLoggedIn, isLoading } = useQuery({

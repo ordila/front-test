@@ -15,3 +15,13 @@ export * from "./header/ProfilePopUp";
 export * from "./home/DiscountedBanner";
 export * from "./home/LargeSlider";
 export * from "./home/SmallSlider";
+
+export * from "./breadcrum/BreadCrum";
+
+export * from "./ProductCard/ProductCard";
+
+export * from "./items-slider/ItemsSlider";
+
+export * from "./layout/ClientLayout";
+export { default as QueryProvider } from "./layout/QueryProvider";
+// export { default as ServerAuthStatus } from "./layout/ServerAuthStatus";
