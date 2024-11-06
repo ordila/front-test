@@ -2,6 +2,7 @@
 import { ReactNode } from "react";
 import { Header } from "../header/Header";
 import { Aside } from "../aside/Aside";
+import { FooterComponent } from "../footer/FooterComponent";
 
 interface ClientLayoutProps {
   children: ReactNode;
@@ -11,6 +12,7 @@ export function ClientLayout({ children }: ClientLayoutProps) {
   return (
     <>
       <Header />
+
       <main className="flex flex-grow md:px-[87px] px-[24px] ">
         <div className="hidden md:block">
           <Aside />
@@ -19,6 +21,8 @@ export function ClientLayout({ children }: ClientLayoutProps) {
           {children}
         </div>
       </main>
+
+      <FooterComponent />
     </>
   );
 }
