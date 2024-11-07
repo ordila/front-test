@@ -41,7 +41,7 @@ export const FooterComponent = () => {
               placeholder="E-MAIL"
               className="flex-grow p-2 focus:outline-none"
             />
-            <button className="bg-black text-white px-4 py-2 rounded-r hover:bg-gray-800 transition">
+            <button className="bg-black text-white px-4 py-2  hover:bg-flash-green hover:text-black transition">
               SUBSCRIBE
             </button>
           </div>

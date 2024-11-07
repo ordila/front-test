@@ -47,4 +47,26 @@ export class ProductService {
       throw error;
     }
   }
+
+  static async getAllProductWithLabelsByCategory(
+    id: string
+  ): Promise<LabelWithProductsDto[]> {
+    try {
+      const response = await axiosInstance.get(
+        `/labels/products-with-labels/category/${id}`
+      );
+
+      const products = LabelWithProductsSchema.array().parse(response.data);
+
+      return products;
+    } catch (error) {
+      if (error instanceof ZodError) {
+        console.error("Validation error:", error.errors);
+      } else {
+        console.error("Request error:", error);
+      }
+
+      throw error;
+    }
+  }
 }
