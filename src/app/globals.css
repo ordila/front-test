@@ -67,3 +67,10 @@
 }
 
 /* END OF THE SWIPER STYLES */
+
+.css-1e3qgpi-MuiInputBase-root-MuiOutlinedInput-root,
+.MuiAccordionDetails-root.css-1lj39kh-MuiAccordionDetails-root,
+.MuiButtonBase-root.MuiAccordionSummary-root.Mui-expanded.MuiAccordionSummary-gutters.css-jineix-MuiButtonBase-root-MuiAccordionSummary-root,
+.MuiButtonBase-root.MuiAccordionSummary-root.MuiAccordionSummary-gutters.css-jineix-MuiButtonBase-root-MuiAccordionSummary-root {
+  padding: 0 !important;
+}

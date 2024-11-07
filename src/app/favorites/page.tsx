@@ -11,7 +11,7 @@ import { Breadcrumb, ProductCard } from "@/ui-kit/composite-components";
 const breadcrumbItems = [
   {
     title: "Favorites",
-    Icon: FavoriteBorderIcon,
+    Icon: <FavoriteBorderIcon />,
   },
 ];
 

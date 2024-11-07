@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-
 import Image from "next/image";
 import Link from "next/link";
 
@@ -20,7 +19,7 @@ const ProfilePopUp: FC<ProfilePopUpProps> = ({ togglePopup }) => {
   const logout = useLogout();
 
   return (
-    <div className="absolute z-[1000] right-[-20px] mt-6 p-[50px]  bg-white rounded-lg shadow-lg  ">
+    <div className="absolute z-[1000] right-[-20px] mt-6 p-[50px] bg-white rounded-lg shadow-lg">
       <div>
         <h4 className="font-black text-[24px] uppercase">Personal Area</h4>
         <button
@@ -32,12 +31,18 @@ const ProfilePopUp: FC<ProfilePopUpProps> = ({ togglePopup }) => {
       </div>
 
       <div className="flex flex-col w-[400px] mt-[30px] border-b border-[#00000033]">
-        <Link href="profile" className="flex gap-3 items-center h-[60px]">
+        <Link
+          href="profile"
+          className="flex items-center gap-3 h-[60px] pl-4 pr-4 hover:bg-slate-100 transition-colors duration-300"
+        >
           <Image src={Profile} alt="Profile icon" />
           <span className="uppercase">Profile</span>
         </Link>
 
-        <Link href="orders" className="flex gap-3 items-center h-[60px] ">
+        <Link
+          href="orders"
+          className="flex items-center gap-3 h-[60px] pl-4 pr-4 hover:bg-slate-100 transition-colors duration-300"
+        >
           <Image src={Orders} alt="Orders icon" />
           <div className="flex items-center justify-between w-full">
             <span className="uppercase">Orders</span>
@@ -46,29 +51,34 @@ const ProfilePopUp: FC<ProfilePopUpProps> = ({ togglePopup }) => {
             </span>
           </div>
         </Link>
-        <Link href="faq" className="uppercase flex gap-3 items-center h-[60px]">
+
+        <Link
+          href="faq"
+          className="flex items-center gap-3 h-[60px] pl-4 pr-4 hover:bg-slate-100 transition-colors duration-300"
+        >
           <Image src={FAQ} alt="Faq icon" />
-          FAQ
+          <span className="uppercase">FAQ</span>
         </Link>
+
         <Link
           href="support"
-          className="uppercase flex gap-3 items-center h-[60px] mb-5"
+          className="flex items-center gap-3 h-[60px] pl-4 pr-4 mb-5 hover:bg-slate-100 transition-colors duration-300"
         >
           <Image src={Contact} alt="Contacts icon" />
-          Contact Us
+          <span className="uppercase">Contact Us</span>
         </Link>
       </div>
 
       <div>
         <button
-          className="uppercase flex gap-3 items-center h-[60px]  mt-5"
+          className="w-full flex items-center gap-3 h-[60px] pl-4 pr-4 mt-5 uppercase hover:bg-slate-100 transition-colors duration-300"
           onClick={() => {
             logout();
             togglePopup();
           }}
         >
           <Image src={SignOut} alt="Sign out icon" />
-          Sign Out
+          <span>Sign Out</span>
         </button>
       </div>
     </div>

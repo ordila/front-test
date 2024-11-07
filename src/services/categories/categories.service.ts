@@ -1,4 +1,5 @@
 import { CategoryDto, CategorySchema } from "@/dto";
+
 import { axiosInstance } from "@/utils";
 
 export class CategoryService {
@@ -8,5 +9,15 @@ export class CategoryService {
     const categories = CategorySchema.array().parse(data);
 
     return categories;
+  }
+
+  static async getCategoryById(categoryId: string): Promise<CategoryDto> {
+    const { data } = await axiosInstance.get(
+      `/products-categories/${categoryId}`
+    );
+
+    const category = await CategorySchema.parse(data);
+
+    return category;
   }
 }
