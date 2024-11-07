@@ -24,4 +24,5 @@ export * from "./items-slider/ItemsSlider";
 
 export * from "./layout/ClientLayout";
 export { default as QueryProvider } from "./layout/QueryProvider";
-// export { default as ServerAuthStatus } from "./layout/ServerAuthStatus";
+
+export * from "./home/promotionSlider/PromotionalSlider";

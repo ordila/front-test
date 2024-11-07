@@ -14,6 +14,8 @@ import { NavigationOptions } from "swiper/types";
 import { ProductCard } from "../ProductCard/ProductCard";
 import { NavigationButton } from "@/ui-kit/base-components";
 
+import { PromotionalSliderWrapper } from "../home/promotionSlider/PromotionalSlider";
+
 interface SliderProps {
   labelName: string;
   labelKey: number;
@@ -29,7 +31,17 @@ export function ItemsSlider({ labelName, products, labelKey }: SliderProps) {
   }
 
   if (labelName === "PROMOTIONAL PRODUCTS") {
-    return <div>Temporary div</div>;
+    const promotionalProducts = products.map((product) => ({
+      ...product,
+      endDate: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),
+    }));
+
+    return (
+      <PromotionalSliderWrapper
+        labelId={labelKey}
+        products={promotionalProducts}
+      />
+    );
   }
 
   return (
