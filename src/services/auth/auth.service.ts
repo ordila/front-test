@@ -8,8 +8,14 @@ export class AuthService {
     });
 
     if (response.data) {
-      document.cookie = "isLoggedIn=true; path=/; secure; samesite=strict";
+      document.cookie = "isLoggedIn=true; path=/; secure; samesite=none";
     }
+
+    return response.data;
+  }
+
+  static async profile() {
+    const response = await axiosInstance.get("auth/profile");
 
     return response.data;
   }

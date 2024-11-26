@@ -2,12 +2,38 @@ import {
   LabelWithProductsDto,
   LabelWithProductsSchema,
 } from "@/dto/labels.dto";
-import { ProductDto, ProductSchema } from "@/dto";
+import {
+  GetAllProductsDto,
+  ProductByIDDto,
+  ProductByIDSchema,
+  ProductDto,
+  ProductSchema,
+} from "@/dto";
 
 import { axiosInstance } from "@/utils";
 import { ZodError } from "zod";
 
 export class ProductService {
+  static async getProductByID(id: string): Promise<ProductByIDDto> {
+    try {
+      const response = await axiosInstance.get<ProductByIDDto>(
+        `/products/${id}`
+      );
+
+      const product = ProductByIDSchema.parse(response.data);
+
+      return product;
+    } catch (error) {
+      if (error instanceof ZodError) {
+        console.error("Validation error:", error.errors);
+      } else {
+        console.error("Request error:", error);
+      }
+
+      throw error;
+    }
+  }
+
   static async getDiscountedProducts(): Promise<ProductDto[]> {
     const response = await axiosInstance.get<ProductDto[]>(
       "/products/discounted-products"
@@ -57,6 +83,26 @@ export class ProductService {
       );
 
       const products = LabelWithProductsSchema.array().parse(response.data);
+
+      return products;
+    } catch (error) {
+      if (error instanceof ZodError) {
+        console.error("Validation error:", error.errors);
+      } else {
+        console.error("Request error:", error);
+      }
+
+      throw error;
+    }
+  }
+
+  static async getAllProducts(query: GetAllProductsDto): Promise<ProductDto[]> {
+    try {
+      const response = await axiosInstance.get<ProductDto[]>("/products", {
+        params: query,
+      });
+
+      const products = ProductSchema.array().parse(response.data);
 
       return products;
     } catch (error) {

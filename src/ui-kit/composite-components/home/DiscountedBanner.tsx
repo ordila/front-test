@@ -23,7 +23,6 @@ export const Banner: FC<BannerProps> = ({ product }) => {
         backgroundImage: "url('/bg-banner.png')",
       }}
     >
-      {/* Ліва частина - текст */}
       <div className="text-left z-10 md:w-[500px] ">
         <div className="flex items-center justify-between mb-4 md:mb-[50px]">
           <p className="text-xs bg-lilac text-white py-1 px-3 font-semibold">
@@ -32,12 +31,10 @@ export const Banner: FC<BannerProps> = ({ product }) => {
           <p className="text-sm font-semibold">{product.name}</p>
         </div>
 
-        {/* Заголовок */}
         <h1 className="text-[26px] md:text-[60px] font-black leading-tight mb-4 text-center">
           FROM THE COVERS <br /> TO YOUR POCKET!
         </h1>
 
-        {/* Знижка */}
         <div className="flex justify-center items-center gap-2 md:gap-10">
           <div className="flex text-[48px]  md:text-[128px] font-black  mb-4">
             -{product.discount}
@@ -62,26 +59,14 @@ export const Banner: FC<BannerProps> = ({ product }) => {
         </div>
       </div>
 
-      {/* Права частина - зображення телефону */}
       <div className=" relative flex-shrink-0 z-10">
         <Image
           src={product.images[0].imageUrl}
           alt="Vivo Phone"
           width={426}
           height={426}
-          className="object-contain sm:mx-auto"
+          className="object-fill sm:mx-auto"
         />
-
-        {/* Ефект відзеркалення
-        <div className="absolute left-0 right-0 bottom-[-420px] opacity-20">
-          <Image
-            src={product.images[0].imageUrl}
-            alt="Vivo Phone Reflection"
-            width={426}
-            height={426}
-            className="object-contain transform scale-y-[-1]"
-          />
-        </div> */}
       </div>
     </div>
   );

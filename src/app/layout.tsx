@@ -2,19 +2,28 @@ import { ReactNode } from "react";
 
 import "./globals.css";
 
-import { ClientLayout } from "@/ui-kit/composite-components";
-import ServerAuthStatus from "@/ui-kit/composite-components/layout/ServerAuthStatus";
+import { ClientLayout, QueryProvider } from "@/ui-kit/composite-components";
 import { GlobalStateProvider } from "@/сontext/GlobalContext";
+import { AuthService } from "@/services";
+import { cookies } from "next/headers";
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const cookieStore = cookies();
+
+  console.log("All Cookies:", cookieStore);
+
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col">
-        <ServerAuthStatus>
+        <QueryProvider>
           <GlobalStateProvider>
             <ClientLayout>{children}</ClientLayout>
           </GlobalStateProvider>
-        </ServerAuthStatus>
+        </QueryProvider>
       </body>
     </html>
   );

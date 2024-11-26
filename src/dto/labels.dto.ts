@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { ProductSchema } from "./product.dto";
 
-const LabelProductSchema = z.object({
+export const LabelProductSchema = z.object({
   id: z.number(),
   productId: z.number(),
   labelId: z.number(),

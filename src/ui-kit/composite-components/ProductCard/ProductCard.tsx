@@ -61,6 +61,7 @@ export function ProductCard({ product, label }: ProductCardProps) {
               alt={product.name}
               width={187}
               height={227}
+              objectFit="contain"
               className="product-image self-center mb-5 w-[187px] h-[227px]"
             />
           )}

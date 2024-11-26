@@ -18,7 +18,7 @@ export const useLogin = () => {
     onSuccess: () => {
       queryClient.setQueryData(["authStatus"], true);
 
-      document.cookie = "isLoggedIn=true; path=/; secure; samesite=strict";
+      document.cookie = "isLoggedIn=true; path=/; secure; samesite=none";
     },
     onError: () => {
       queryClient.setQueryData(["authStatus"], false);

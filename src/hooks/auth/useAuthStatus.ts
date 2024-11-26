@@ -1,12 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
-import { AuthService } from "@/services";
+"use client";
+import { useGlobalStateContext } from "@/сontext/GlobalContext";
 
 export const useAuthStatus = () => {
-  const { data: isLoggedIn, isLoading } = useQuery({
-    queryKey: ["authStatus"],
-    queryFn: AuthService.checkAuthStatus,
-    staleTime: Infinity,
-  });
+  const { isLoggedIn } = useGlobalStateContext();
 
-  return { isLoggedIn, isLoading };
+  return { isLoggedIn };
 };

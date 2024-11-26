@@ -4,11 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { useCategories } from "@/hooks";
+import { CategoriesSkeleton } from "../../base-components/skeleton/CategoriesSkeleton";
 
 export const CategoriesList = () => {
   const { data, isLoading, error } = useCategories();
 
-  if (isLoading) return <div>Loading categories...</div>;
+  if (isLoading) return <CategoriesSkeleton />;
 
   if (error instanceof Error)
     return <div>Error loading categories: {error.message}</div>;

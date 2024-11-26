@@ -16,7 +16,7 @@ import Info from "@/assets/icons/info.svg";
 export const FooterComponent = () => {
   return (
     <footer className="py-8 md:px-[87px] px-[24px] bg-light-grey">
-      <div className="md:flex">
+      <div className="md:flex ">
         <div className="mb-[50px] flex justify-center">
           <Image
             src={Logo}
@@ -47,7 +47,7 @@ export const FooterComponent = () => {
           </div>
         </div>
 
-        <div className="mb-8 max-w-[405px]">
+        <div className="mb-8 max-w-[405px] mx-auto">
           <h2 className="text-lg font-bold mb-2">OUR COMMUNITY</h2>
           <div className="flex items-center justify-center mb-4 gap-[10px]">
             <Image src={Info} alt="info" />

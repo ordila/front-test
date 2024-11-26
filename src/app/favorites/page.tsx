@@ -36,13 +36,22 @@ const FavoritesPage = () => {
           </button>
         </div>
       </div>
-      <div className="flex flex-col md:flex-row md:flex-wrap">
-        {wishList?.map((product) => (
-          <div key={product.id} className="w-full md:w-[260px]">
-            <ProductCard product={product} />
-          </div>
-        ))}
-      </div>
+
+      {wishList?.length === 0 ? (
+        <div className="flex justify-center items-center h-[50vh]">
+          <p className="text-2xl font-medium text-gray-600">
+            Your favorites list is empty for now.
+          </p>
+        </div>
+      ) : (
+        <div className="flex flex-col md:flex-row md:flex-wrap">
+          {wishList.map((product) => (
+            <div key={product.id} className="w-full md:w-[260px]">
+              <ProductCard product={product} />
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

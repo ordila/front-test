@@ -1,10 +1,13 @@
 "use client";
-import React, { useState, useEffect, useRef, FC } from "react";
+
+import React, { useEffect, useRef, FC, useState } from "react";
 import Image from "next/image";
+import debounce from "lodash/debounce";
 
 import SearchIcon from "@/assets/icons/search.svg";
 import CloseWhiteIcon from "@/assets/icons/closeWhite.svg";
 import { ButtonIcon } from "../buttons/ButtonIcon";
+import { useGlobalStateContext } from "@/сontext/GlobalContext";
 
 type SearchInputProps = {
   isMobile?: boolean;
@@ -15,16 +18,29 @@ export const SearchInput: FC<SearchInputProps> = ({
   isMobile,
   styles = "",
 }) => {
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
+  const { setSearchTerm } = useGlobalStateContext(); // Оновлення глобального стану
   const searchRef = useRef<HTMLFormElement>(null);
+  const [localSearchTerm, setLocalSearchTerm] = useState(""); // Локальний стан для debounce
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  // Дебаунс логіка
+  const debouncedUpdateSearchTerm = debounce((term: string) => {
+    setSearchTerm(term); // Оновлюємо глобальний пошуковий термін
+  }, 500);
+
+  // Виклик дебаунсу при зміні `localSearchTerm`
+  useEffect(() => {
+    debouncedUpdateSearchTerm(localSearchTerm);
+    return () => debouncedUpdateSearchTerm.cancel();
+  }, [localSearchTerm]);
 
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
   };
 
   const clearSearch = () => {
-    setSearchTerm("");
+    setLocalSearchTerm(""); // Локально очищаємо
+    setSearchTerm(""); // Очищаємо глобальний стан
   };
 
   useEffect(() => {
@@ -46,24 +62,14 @@ export const SearchInput: FC<SearchInputProps> = ({
     };
   }, [isSearchOpen, isMobile]);
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-  };
-
   return (
-    <form
-      className={`${styles} flex items-center`}
-      ref={searchRef}
-      onSubmit={handleSearch}
-    >
-      {/* Інпут пошуку для десктопу або якщо мобільний інпут відкрито */}
+    <form className={`${styles} flex items-center`} ref={searchRef}>
       {!isMobile || isSearchOpen ? (
         <>
           <div
             className={`${styles} flex items-center bg-white px-3 py-1 h-10 relative ml-10`}
           >
-            {/* Якщо є текст, відображаємо хрестик */}
-            {searchTerm && (
+            {localSearchTerm && (
               <button
                 onClick={clearSearch}
                 type="button"
@@ -81,11 +87,9 @@ export const SearchInput: FC<SearchInputProps> = ({
               type="text"
               placeholder="Enter"
               className="ml-4 border-none outline-none w-full"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              value={localSearchTerm}
+              onChange={(e) => setLocalSearchTerm(e.target.value)} // Оновлення локального стану
             />
-
-            {/* Кнопка сабміту */}
           </div>
           <div className="hidden md:block w-[104px] h-full">
             <ButtonIcon title="search" />
@@ -93,7 +97,6 @@ export const SearchInput: FC<SearchInputProps> = ({
         </>
       ) : (
         <div>
-          {/* Кнопка відкриття пошуку на мобільному */}
           <button onClick={toggleSearch}>
             <Image src={SearchIcon} alt="search" />
           </button>

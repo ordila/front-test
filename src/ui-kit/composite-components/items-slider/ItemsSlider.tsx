@@ -49,12 +49,12 @@ export function ItemsSlider({ labelName, products, labelKey }: SliderProps) {
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-2xl font-semibold">{labelName}</h2>
         <div className="flex md:gap-[24px]">
-          <Link
+          {/* <Link
             href={`/label/${labelKey.toString()}`}
             className="w-[95px] h-[40px] bg-black text-white font-semibold uppercase text-sm flex items-center justify-center transition-colors duration-300 ease-in-out hover:bg-[#ADFF2F] hover:text-black"
           >
             See All
-          </Link>
+          </Link> */}
           <div className="flex gap-2">
             <NavigationButton ref={prevRef} direction="left" />
 

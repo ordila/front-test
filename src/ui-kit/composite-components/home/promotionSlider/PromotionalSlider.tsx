@@ -36,12 +36,12 @@ export const PromotionalSliderWrapper = ({
         <h2 className="text-2xl font-bold uppercase">Promotional Products</h2>
 
         <div className="flex gap-4">
-          <Link
+          {/* <Link
             href={`/label/${labelId?.toString()}`}
             className="w-[95px] h-[40px] bg-black text-white font-semibold uppercase text-sm flex items-center justify-center transition-colors duration-300 ease-in-out hover:bg-lime-400 hover:text-black"
           >
             See All
-          </Link>
+          </Link> */}
           <div className="flex gap-2">
             <NavigationButton ref={prevRef} direction="left" />
             <NavigationButton ref={nextRef} direction="right" />
@@ -53,7 +53,7 @@ export const PromotionalSliderWrapper = ({
       <DesktopPromotionalSlider
         prevRef={prevRef}
         nextRef={nextRef}
-        products={products}
+        products={products.slice(0, 6)}
       />
     </>
   );

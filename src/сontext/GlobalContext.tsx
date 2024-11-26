@@ -8,21 +8,31 @@ interface GlobalStateContextProps {
   setPriceFilter: (price: { min?: number; max?: number }) => void;
   availableBrands: string[];
   setAvailableBrands: (brands: string[]) => void;
+
+  // Додаємо логіку пошуку
+  searchTerm: string;
+  setSearchTerm: (term: string) => void;
+  isLoggedIn?: boolean;
 }
 
 const GlobalStateContext = createContext<GlobalStateContextProps | undefined>(
   undefined
 );
 
-export const GlobalStateProvider: React.FC<{ children: ReactNode }> = ({
-  children,
-}) => {
+export const GlobalStateProvider: React.FC<{
+  children: ReactNode;
+  isLoggedIn?: boolean;
+}> = ({ children, isLoggedIn }) => {
   const [brandFilter, setBrandFilter] = useState<string[]>([]);
   const [priceFilter, setPriceFilter] = useState<{
     min?: number;
     max?: number;
   }>({});
   const [availableBrands, setAvailableBrands] = useState<string[]>([]);
+
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
+  console.log("isLoggedInContext", isLoggedIn);
 
   return (
     <GlobalStateContext.Provider
@@ -33,6 +43,9 @@ export const GlobalStateProvider: React.FC<{ children: ReactNode }> = ({
         setPriceFilter,
         availableBrands,
         setAvailableBrands,
+        searchTerm,
+        setSearchTerm,
+        isLoggedIn,
       }}
     >
       {children}
